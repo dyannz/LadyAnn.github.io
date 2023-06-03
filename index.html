@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment</title>
+  <style type="text/css">
+    body {
+      top: 50%;
+      left: 50%;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(to left, #F3CCFF, #D09CFA, #A555EC,#F8E8EE,#FDCEDF,#F2BED1);
+  background-size: 1200% 100%;
+  animation: rainbow 5s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 400px;
+  background-color: #ECCDB4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  text-align: center;
+}
+
+.input-error {
+  color: red;
+}
+
+.input-field {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #E893CF;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  width: 48%;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+p {
+  margin-top: 10px;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h2>Sum of Numbers in Range</h2>
+
+      <div class="form-wrapper">
+        <form class="sum-form">
+          <div class="input-wrapper">
+            <label for="startNumber">Starting Number:</label>
+            <input type="number" id="startNumber" required>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="endNumber">Ending Number:</label>
+            <input type="number" id="endNumber" required>
+          </div>
+
+          <br>
+
+          <button type="submit" class="submit-button">Calculate Sum</button>
+          <button type="reset" class="reset-button">Reset</button>
+        </form>
+      </div>
+
+      <div class="output-box">
+        <div class="result"></div>
+        <div class="error-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    document.querySelector('.sum-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var startNumber = parseInt(document.getElementById('startNumber').value);
+      var endNumber = parseInt(document.getElementById('endNumber').value);
+
+      var resultContainer = document.querySelector('.result');
+      var errorContainer = document.querySelector('.error-message');
+
+      if (isNaN(startNumber) || isNaN(endNumber)) {
+        errorContainer.innerHTML = 'Please enter valid numbers.';
+        resultContainer.innerHTML = '';
+        return;
+      }
+
+      var sum = 0;
+      var numbersAdded = [];
+
+      for (var i = startNumber; i <= endNumber; i++) {
+        sum += i;
+        numbersAdded.push(i);
+      }
+
+      errorContainer.innerHTML = '';
+      resultContainer.innerHTML = 'The sum is: ' + sum + '<br>' + 'Numbers added: ' + numbersAdded.join(', ');
+    });
+  </script>
+</body>
+</html>
